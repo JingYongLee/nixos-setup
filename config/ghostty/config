@@ -44,3 +44,8 @@ keybind = shift+enter=csi:13;2u
 
 # Legacy encoding sends Alt+Shift+Enter the same as Alt+Enter; send CSI-u so tmux can match M-S-Enter.
 keybind = alt+shift+enter=csi:13;4u
+
+# Omarchy theme bridge: hyprchroma writes the active theme's palette here
+# (the session added this line at first login; carried into the repo so the
+# terminal follows theme switches).
+config-file = ~/.config/omarchy/runtime/ghostty.conf

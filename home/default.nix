@@ -5,11 +5,18 @@
   config,
   lib,
   pkgs,
+  osConfig ? { },
   opencodeV2,
   t3code,
   nvimConfigPath,
   ...
 }:
+let
+  # QXL in the trial VM advertises 1024x768 as preferred; force the real
+  # mode. Only the vm host carries the Virtual-1 connector (old repo's
+  # isVM pattern, carried).
+  isVM = osConfig.networking.hostName or "" == "vm";
+in
 {
   home.username = "jingyonglee";
   home.homeDirectory = "/home/jingyonglee";
@@ -46,7 +53,12 @@
   };
 
   # --- Terminal ------------------------------------------------------------------
-  xdg.configFile."ghostty/config".source = ../config/ghostty/config;
+  # force: the session's first-login seeding appended the omarchy theme
+  # bridge line to the local copy; the repo copy now carries it.
+  xdg.configFile."ghostty/config" = {
+    source = ../config/ghostty/config;
+    force = true;
+  };
 
   # --- Browser default: Helium ---------------------------------------------------
   # Omarchy's default-browser menu hard-codes its seven browsers; Helium
@@ -70,9 +82,17 @@
       "application/xhtml+xml" = "helium.desktop";
     };
   };
+  # The pre-declarative mimeapps.list (written by xdg-settings during the
+  # trial) collides with the generated one; content is identical.
+  xdg.configFile."mimeapps.list".force = true;
 
-  # --- Editor: LazyVim hybrid -----------------------------------------------------
-  # Plain lua starter symlinked out-of-store so lazy.nvim can write
+  # --- VM display ----------------------------------------------------------------
+  # QXL advertises 1024x768 as preferred; the real mode is forced in the
+  # session's own ~/.config/hypr/monitors.lua (Omarchy seeds it as a user
+  # template and loads it after its defaults — edited in place, upstream
+  # style, not HM-managed). The laptop host will do the same for its panel.
+
+  # --- Editor: LazyVim hybrid -----------------------------------------------------  # Plain lua starter symlinked out-of-store so lazy.nvim can write
   # lazy-lock.json back into the repo. Per-host path (extraSpecialArgs):
   # /nixos virtiofs share in the vm, the workspace checkout on the laptop.
   # colorscheme.lua pin replaced by the theme.lua symlink: nvim follows the

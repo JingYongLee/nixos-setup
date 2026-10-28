@@ -23,13 +23,17 @@ VIDEO_ARGS=(
   --video qxl --graphics spice,listen=none
 )
 
+# Explicit boot order, CD first: this host's EDK2 parks on the firmware
+# menu when the first boot device (blank disk) fails, rather than
+# falling through to the CD. The disk keeps order 2 and takes over
+# after the installer writes systemd-boot.
 virt-install \
   --connect qemu:///system \
   --name vm \
   --memory 8192 --vcpus 8 --cpu host-passthrough \
   --machine q35 --boot uefi \
-  --disk pool=default,size=40,format=qcow2,bus=virtio,boot.order=1,cache=writeback,discard=unmap \
-  --cdrom "$ISO" \
+  --disk pool=default,size=40,format=qcow2,bus=virtio,boot.order=2,cache=writeback,discard=unmap \
+  --disk path="$ISO",device=cdrom,bus=sata,boot.order=1,readonly=on \
   --network network=default,model=virtio \
   "${VIDEO_ARGS[@]}" \
   --channel unix,target_type=virtio,name=org.qemu.guest_agent.0 \
@@ -38,6 +42,6 @@ virt-install \
   --rng /dev/urandom,model=virtio \
   --filesystem source.dir="$REPO",target.dir=nixos-setup,driver.type=virtiofs \
   --memorybacking source.type=memfd,access.mode=shared \
-  --os-variant nixos-26.05 \
+  --osinfo generic \
   --noautoconsole \
   --wait 0

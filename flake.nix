@@ -17,8 +17,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Upstream OpenCode v2 CLI. nixpkgs packages v1.
-    opencodeV2.url = "github:anomalyco/opencode";
+    # Upstream OpenCode v2 CLI. nixpkgs packages v1. Pinned to the rev the
+    # predecessor repo ran daily (proven): newer heads have broken
+    # node_modules FOD hashes (observed on d1bd20f, 2026-10-28). Bump
+    # deliberately, with a build.
+    opencodeV2.url = "github:anomalyco/opencode/17b79f4e0c16dcff200b0417567ed22aeb2d7166";
 
     # Helium browser (Chromium-based, not in nixpkgs): deb repack with a
     # NixOS module. git+https avoids the GitHub REST API (rate-limited on

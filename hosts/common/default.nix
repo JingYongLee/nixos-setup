@@ -31,9 +31,6 @@
     bootSplash = "off";
   };
 
-  # The desktop guide + agent tutor. Off (decision record).
-  services.nixi.enable = false;
-
   # --- User --------------------------------------------------------------------
   users.users.jingyonglee = {
     isNormalUser = true;
@@ -74,6 +71,9 @@
     users.jingyonglee = {
       imports = [ ../../home ];
       programs.nixarchy.enable = true;
+      # The desktop guide + agent tutor. Off (decision record). A
+      # home-manager option, not a NixOS one.
+      services.nixi.enable = false;
       home.stateVersion = "26.05";
     };
     extraSpecialArgs = {

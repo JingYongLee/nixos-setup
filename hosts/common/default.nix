@@ -74,12 +74,13 @@
       # The desktop guide + agent tutor. Off (decision record). A
       # home-manager option, not a NixOS one.
       services.nixi.enable = false;
-      home.stateVersion = "26.05";
+      home.stateVersion = "26.11";
     };
     extraSpecialArgs = {
       inherit (inputs) opencodeV2 t3code;
-      # LazyVim out-of-store symlink source, per host (see home/default.nix).
-      nvimConfigPath = lib.mkDefault "/nixos";
+      # nvimConfigPath is set by each host, not here: extraSpecialArgs is
+      # an untyped attrs merge, so a value with module priority
+      # (mkDefault) would reach the home config as a raw override set.
     };
   };
 

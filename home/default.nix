@@ -13,7 +13,8 @@
 {
   home.username = "jingyonglee";
   home.homeDirectory = "/home/jingyonglee";
-  home.stateVersion = "26.05";
+  # First install runs nixos-unstable 26.11; set at install, never after.
+  home.stateVersion = "26.11";
 
   # --- Omarchy desktop (nixarchy home module) ---------------------------------
   programs.nixarchy = {
@@ -53,8 +54,7 @@
   # /nixos virtiofs share in the vm, the workspace checkout on the laptop.
   # colorscheme.lua pin replaced by the theme.lua symlink: nvim follows the
   # active Omarchy theme across all 22 themes (decision record).
-  xdg.configFile."nvim".source =
-    config.lib.file.mkOutOfStoreSymlink "${nvimConfigPath}/config/nvim";
+  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${nvimConfigPath}/config/nvim";
 
   home.packages = with pkgs; [
     # core cli

@@ -84,7 +84,7 @@
     {
       nixosConfigurations = {
         vm = mkHost ./hosts/vm;
-        # laptop joins after the vm trial gate passes.
+        laptop = mkHost ./hosts/laptop;
       };
 
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;

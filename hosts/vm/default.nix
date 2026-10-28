@@ -40,7 +40,11 @@
   networking.hostName = "vm";
   time.timeZone = "Asia/Kuala_Lumpur";
 
-  # First install runs nixos-unstable 26.11; set at install, never after.
+  # Installed fresh from unstable 26.11; set at install, never after.
+  home-manager.users.jingyonglee.home.stateVersion = "26.11";
+
+  # This value does not affect fingerprinting; do not change it after install.
+  # Installed fresh from unstable 26.11 (see hosts/laptop for that host's).
   system.stateVersion = "26.11";
 
   # The repo is shared into the guest at /nixos (virtiofs); LazyVim

@@ -20,8 +20,8 @@ in
 {
   home.username = "jingyonglee";
   home.homeDirectory = "/home/jingyonglee";
-  # First install runs nixos-unstable 26.11; set at install, never after.
-  home.stateVersion = "26.11";
+  # home.stateVersion is set per host (see hosts/<name>): machines differ
+  # in when they were first installed.
 
   # --- Omarchy desktop (nixarchy home module) ---------------------------------
   programs.nixarchy = {

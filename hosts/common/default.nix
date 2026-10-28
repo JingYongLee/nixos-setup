@@ -74,7 +74,8 @@
       # The desktop guide + agent tutor. Off (decision record). A
       # home-manager option, not a NixOS one.
       services.nixi.enable = false;
-      home.stateVersion = "26.11";
+      # home.stateVersion is per-host: the vm was installed fresh from
+      # unstable 26.11, the laptop predates this repo at 26.05.
     };
     extraSpecialArgs = {
       inherit (inputs) opencodeV2 t3code;

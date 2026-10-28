@@ -48,6 +48,29 @@
   # --- Terminal ------------------------------------------------------------------
   xdg.configFile."ghostty/config".source = ../config/ghostty/config;
 
+  # --- Browser default: Helium ---------------------------------------------------
+  # Omarchy's default-browser menu hard-codes its seven browsers; Helium
+  # isn't one. Owning mimeapps.list declaratively sets the handlers once
+  # and survives rebuilds. Consequence (documented upstream): the file
+  # becomes a store symlink, so Setup > Default browser can no longer
+  # change it — browser choice lives here now.
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "x-scheme-handler/http" = "helium.desktop";
+      "x-scheme-handler/https" = "helium.desktop";
+      "x-scheme-handler/about" = "helium.desktop";
+      "x-scheme-handler/unknown" = "helium.desktop";
+      "text/html" = "helium.desktop";
+      "application/x-extension-htm" = "helium.desktop";
+      "application/x-extension-html" = "helium.desktop";
+      "application/x-extension-shtml" = "helium.desktop";
+      "application/x-extension-xht" = "helium.desktop";
+      "application/x-extension-xhtml" = "helium.desktop";
+      "application/xhtml+xml" = "helium.desktop";
+    };
+  };
+
   # --- Editor: LazyVim hybrid -----------------------------------------------------
   # Plain lua starter symlinked out-of-store so lazy.nvim can write
   # lazy-lock.json back into the repo. Per-host path (extraSpecialArgs):
@@ -79,8 +102,9 @@
     wl-clip-persist
     fuzzel
 
-    # GUI apps
-    thunar
+    # GUI apps. Nautilus (file manager, SUPER+SHIFT+F) comes with the
+    # Omarchy base — Thunar dropped from the record after the trial
+    # showed Nautilus arrives upstream-integrated.
     localsend
 
     # editor: nvim itself + every tool/LSP the LazyVim extras expect

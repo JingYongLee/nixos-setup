@@ -1386,22 +1386,6 @@
         "type": "github"
       }
     },
-    "nixpkgs_3": {
-      "locked": {
-        "lastModified": 1790510107,
-        "narHash": "sha256-EVMNYv7hYDDD9TGVT/hIyTYgpiXA8y3m5xIEIxuGNU0=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "3181085bfd08663b6b9e60bc7a8395c2aaa741bd",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "omarchroma": {
       "flake": false,
       "locked": {
@@ -1435,25 +1419,6 @@
         "type": "github"
       }
     },
-    "opencodeV2": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_3"
-      },
-      "locked": {
-        "lastModified": 1792865112,
-        "narHash": "sha256-w1CHSGCWoRaWra0fdzj2uDiYkCeb3yZpmvJEIBM+bC8=",
-        "owner": "anomalyco",
-        "repo": "opencode",
-        "rev": "17b79f4e0c16dcff200b0417567ed22aeb2d7166",
-        "type": "github"
-      },
-      "original": {
-        "owner": "anomalyco",
-        "repo": "opencode",
-        "rev": "17b79f4e0c16dcff200b0417567ed22aeb2d7166",
-        "type": "github"
-      }
-    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -1483,7 +1448,6 @@
         "helium-flake": "helium-flake",
         "nixarchy": "nixarchy",
         "nixpkgs": "nixpkgs_2",
-        "opencodeV2": "opencodeV2",
         "t3code": "t3code"
       }
     },
@@ -1577,10 +1541,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1793197459,
-        "narHash": "sha256-juIjElKpKpIT9XZ6KWbHheQKRLw316aLIG69J6fF9LA=",
+        "lastModified": 1793216965,
+        "narHash": "sha256-b7i529WVA5lpVf5n6LzcjaQ83fV7HyqQpUMK0Xk6qhg=",
         "ref": "refs/heads/main",
-        "rev": "b91c89d90bbdac1f8be8cd92ba440959375b6311",
+        "rev": "4d8de24c7b80eb7b19cf0eca9efc6151d30c2f3d",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/omarcresp/t3code-flake"

@@ -6,7 +6,6 @@
   lib,
   pkgs,
   osConfig ? { },
-  opencodeV2,
   t3code,
   nvimConfigPath,
   ...
@@ -145,11 +144,13 @@ in
     nodejs # vtsls runtime
     vscode-langservers-extracted # extras.lang.json -> jsonls
 
-    # AI stack. claude-code + codex come straight from the unstable base
-    # now (the old nixpkgs-unstable side-input collapsed into it).
+    # AI stack. claude-code + codex + opencode all come straight from the
+    # unstable base (Hydra-built): unstable carries opencode v2 now
+    # (2.1.4, 2026-10), so the opencodeV2 flake input was dropped — the
+    # last AI side-input collapsed into the base.
     claude-code
     codex
-    opencodeV2.packages.${pkgs.stdenv.hostPlatform.system}.default
+    opencode
     t3code.packages.${pkgs.stdenv.hostPlatform.system}.t3-code
   ];
 

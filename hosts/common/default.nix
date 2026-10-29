@@ -78,7 +78,7 @@
       # unstable 26.11, the laptop predates this repo at 26.05.
     };
     extraSpecialArgs = {
-      inherit (inputs) opencodeV2 t3code;
+      inherit (inputs) t3code;
       # nvimConfigPath is set by each host, not here: extraSpecialArgs is
       # an untyped attrs merge, so a value with module priority
       # (mkDefault) would reach the home config as a raw override set.

@@ -95,8 +95,20 @@
   # Cowork still needs the kvm group + vhost_vsock below. The FHS env keeps
   # the vendor Electron, which is what makes the Code tab work. Binary-repack
   # trust tier: bumped manually, reviewed.
+  # --- Android app development (2026-10 decision: Kotlin + Compose) ----------
+  # android-studio: current stable (2026.2.x, unfree) with the Compose
+  # toolchain; the SDK itself is Studio-managed in ~/Android/Sdk — the
+  # project pins what matters (gradle wrapper, AGP, compileSdk) in git.
+  # android-tools: adb/fastboot on PATH (NOT programs.adb.enable, which is
+  # inert on current nixpkgs — systemd 258 uaccess covers USB perms).
+  # Emulator runs on /dev/kvm (kvm group already assigned above).
+  # scrcpy: app-catalogue row (NixOS-level option — apps.* is not a home
+  # option), mirrors/controls a real phone over USB or Wi-Fi.
+  programs.nixarchy.apps.scrcpy.enable = true;
   environment.systemPackages = [
     inputs.claude-desktop.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop-cowork
+    pkgs.android-studio
+    pkgs.android-tools
   ];
   boot.kernelModules = [ "vhost_vsock" ];
   # Sign-in persistence: the app stores credentials through libsecret

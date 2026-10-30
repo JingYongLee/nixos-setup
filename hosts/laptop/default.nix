@@ -96,7 +96,9 @@
   # the vendor Electron, which is what makes the Code tab work. Binary-repack
   # trust tier: bumped manually, reviewed.
   # --- Android app development (2026-10 decision: Kotlin + Compose) ----------
-  # android-studio: current stable (2026.2.x, unfree) with the Compose
+  # android-studio: DEV channel (2026.2.3.x, unfree) — AGP 9.5 (droidchess) needs Studio
+  # 2026.2.2+; nixpkgs stable is still 2026.2.1. Revert to
+  # pkgs.android-studio once stable carries 2026.2.2+. Ships the Compose
   # toolchain; the SDK itself is Studio-managed in ~/Android/Sdk — the
   # project pins what matters (gradle wrapper, AGP, compileSdk) in git.
   # android-tools: adb/fastboot on PATH (NOT programs.adb.enable, which is
@@ -107,7 +109,7 @@
   programs.nixarchy.apps.scrcpy.enable = true;
   environment.systemPackages = [
     inputs.claude-desktop.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop-cowork
-    pkgs.android-studio
+    pkgs.androidStudioPackages.dev
     pkgs.android-tools
   ];
   boot.kernelModules = [ "vhost_vsock" ];

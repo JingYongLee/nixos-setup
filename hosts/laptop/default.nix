@@ -106,7 +106,9 @@
   # Emulator runs on /dev/kvm (kvm group already assigned above).
   # scrcpy: app-catalogue row (NixOS-level option — apps.* is not a home
   # option), mirrors/controls a real phone over USB or Wi-Fi.
+  # omawrite: Omarchy's own focused writing app, packaged by the port.
   programs.nixarchy.apps.scrcpy.enable = true;
+  programs.nixarchy.apps.omawrite.enable = true;
   environment.systemPackages = [
     inputs.claude-desktop.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop-cowork
     pkgs.androidStudioPackages.dev
